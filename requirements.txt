@@ -1,7 +1,7 @@
 beautifulsoup4==4.9.3
 pandas==1.5.1
 streamlit==1.15.0
-undetected-chromedriver==3.1.7
+undetected-chromedriver
 selenium
 lxml==4.9.1
 helium
