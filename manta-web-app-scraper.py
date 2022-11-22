@@ -30,7 +30,7 @@ _ = installff()
 
 def scrape(category, city, state, pages):
     st.text('Loading and downloading the driver')
-    driver = start_chrome(capabilities=caps, options=options)
+    driver = uc.Chrome(desired_capabilities=caps, options=options)
     st.text('Browser loaded')
 
     items_list = []
