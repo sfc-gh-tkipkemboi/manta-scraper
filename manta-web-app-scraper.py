@@ -1,29 +1,28 @@
 import streamlit as st
 import pandas as pd
 from bs4 import BeautifulSoup
-import os, sys
+import os
+import glob
 
 import undetected_chromedriver as uc
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from selenium.webdriver.support.ui import WebDriverWait
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 
-options = uc.ChromeOptions()
-options.add_argument('--headless') # for a headless browser
-options.add_argument('--disable-gpu')
-options.add_argument('--no-sandbox')
-options.add_argument('--disable-dev-shm-usage')
+options = Options()
+options.add_argument("--headless")
+options.add_argument("--no-sandbox")
+options.add_argument("--disable-dev-shm-usage")
+options.add_argument("--disable-gpu")
+options.add_argument("--disable-features=NetworkService")
+options.add_argument("--window-size=1920x1080")
+options.add_argument("--disable-features=VizDisplayCompositor")
 
 caps = DesiredCapabilities().CHROME
-caps["pageLoadStrategy"] = "eager" # to make the page load faster
-
-@st.experimental_singleton
-def installff():
-  os.system('sbase install geckodriver')
-  os.system('ln -s /home/appuser/venv/lib/python3.7/site-packages/seleniumbase/drivers/geckodriver /home/appuser/venv/bin/geckodriver')
-
-_ = installff()
+caps["pageLoadStrategy"] = "eager"
 
 
 def scrape(category, city, state, pages):
@@ -86,7 +85,8 @@ def scrape(category, city, state, pages):
         key='download-csv'
     )
 
-st.title('Manta.com Buisness Directory Scraper')
+st.balloons()
+st.title('🔨 Manta.com Scraper')
 with st.form('Scraper'):
     st.text('If you get any error make sure you choose a valid category, state, city and number of page as well.')
     st.text('So before you click on the scrape button, I will advice you go to the site (https://www.manta.com/business-directory) to test the parameters before inputing them here')
@@ -98,5 +98,7 @@ with st.form('Scraper'):
     button = st.form_submit_button('scrape')
 
 if button:
+    st.info('Selenium is running, please wait...')
     scrape(category, city, state, pages)
+    st.text('Successful finished.')
 
