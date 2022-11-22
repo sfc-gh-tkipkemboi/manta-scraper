@@ -20,17 +20,16 @@ options.add_argument('--disable-dev-shm-usage')
 caps = DesiredCapabilities().CHROME
 caps["pageLoadStrategy"] = "eager" # to make the page load faster
 
-#@st.experimental_singleton
-#def installff():
-  #os.system('sbase install chromedriver')
-  #os.system('ln -s /home/appuser/venv/lib/python3.7/site-packages/helium/_impl/webdrivers/linux/chromedriver/ /home/appuser/venv/bin/chromedriver')
+def installff():
+  os.system('sbase install chromeriver')
+  os.system('ln -s /home/appuser/venv/lib/python3.7/site-packages/seleniumbase/drivers/chromedriver /home/appuser/venv/bin/chromedriver')
 
-#_ = installff()
+_ = installff()
 
 
 def scrape(category, city, state, pages):
     st.text('Loading and downloading the driver')
-    driver = start_chrome(capabilities=caps, options=options)
+    driver = uc.Chrome(desired_capabilities=caps, options=options)
     st.text('Browser loaded')
 
     items_list = []
