@@ -1,14 +1,11 @@
 import pandas as pd
 from bs4 import BeautifulSoup
 
-from selenium import webdriver
 import undetected_chromedriver as uc
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-
 
 options = uc.ChromeOptions()
 options.add_argument('--headless') # for a headless browser
