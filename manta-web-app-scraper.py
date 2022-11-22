@@ -30,7 +30,7 @@ caps["pageLoadStrategy"] = "eager" # to make the page load faster
 
 def scrape(category, city, state, pages):
     st.text('Loading and downloading the driver')
-    driver = uc.Chrome(desired_capabilities=caps, options=options)
+    driver = start_chrome(capabilities=caps, options=options)
     st.text('Browser loaded')
 
     items_list = []
