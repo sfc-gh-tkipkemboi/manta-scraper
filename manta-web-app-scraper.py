@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from bs4 import BeautifulSoup
+import os
 
 import undetected_chromedriver as uc
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
