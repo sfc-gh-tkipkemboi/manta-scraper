@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from bs4 import BeautifulSoup
+import os
 
 from selenium import webdriver
 import undetected_chromedriver as uc
@@ -10,7 +11,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 
-options = uc.ChromeOptions()
+options = Options()
 options.add_argument('--headless') # for a headless browser
 options.add_argument('--disable-gpu')
 options.add_argument('--no-sandbox')
@@ -21,7 +22,7 @@ caps["pageLoadStrategy"] = "eager" # to make the page load faster
 
 def scrape(category, city, state, pages):
     st.text('Loading and downloading the driver')
-    driver = uc.Chrome(desired_capabilities=caps, options=options)
+    driver = uc.Chrome(desired_capabilities=caps, options=options, driver_executable_path = os.environ.get("CHROMEDRIVER_PATH"))
     st.text('Browser loaded')
 
     items_list = []
