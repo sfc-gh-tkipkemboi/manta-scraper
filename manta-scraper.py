@@ -65,3 +65,4 @@ for x in range(1, 10): # you can change the number of pages
 df = pd.DataFrame(items_list)
 df.to_csv('Restaurants.csv', index=False)
 print(df)
+driver.quit()

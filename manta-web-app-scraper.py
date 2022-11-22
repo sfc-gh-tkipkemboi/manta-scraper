@@ -67,6 +67,7 @@ def scrape(category, city, state, pages):
 
     df = pd.DataFrame(items_list)
     st.dataframe(df)
+    driver.quit()
 
 st.title('Manta.com Buisness Directory Scraper')
 with st.form('Scraper'):
