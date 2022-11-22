@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from bs4 import BeautifulSoup
 
+from selenium import webdriver
 import undetected_chromedriver as uc
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.support.ui import WebDriverWait
@@ -9,9 +10,11 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 
-options = Options()
+options = uc.ChromeOptions()
 options.add_argument('--headless') # for a headless browser
 options.add_argument('--disable-gpu')
+options.add_argument('--no-sandbox')
+options.add_argument('--disable-dev-shm-usage')
 
 caps = DesiredCapabilities().CHROME
 caps["pageLoadStrategy"] = "eager" # to make the page load faster
