@@ -3,6 +3,7 @@ import pandas as pd
 from bs4 import BeautifulSoup
 import os, sys
 
+from helium import *
 import undetected_chromedriver as uc
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium.webdriver.support.ui import WebDriverWait
@@ -28,7 +29,7 @@ _ = installff()
 
 def scrape(category, city, state, pages):
     st.text('Loading and downloading the driver')
-    driver = uc.Chrome(desired_capabilities=caps, options=options)
+    driver = start_chrome(desired_capabilities=caps, options=options)
     st.text('Browser loaded')
 
     items_list = []
