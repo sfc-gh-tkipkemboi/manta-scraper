@@ -1,9 +1,8 @@
 import streamlit as st
 import pandas as pd
 from bs4 import BeautifulSoup
-import os, sys
+import os
 
-from helium import *
 import undetected_chromedriver as uc
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium import webdriver
@@ -23,14 +22,6 @@ options.add_argument("--disable-features=VizDisplayCompositor")
 
 caps = DesiredCapabilities().CHROME
 caps["pageLoadStrategy"] = "eager" # to make the page load faster
-
-@st.experimental_singleton
-def installff():
-  os.system('sbase install geckodriver')
-  os.system('ln -s /home/appuser/venv/lib/python3.7/site-packages/seleniumbase/drivers/geckodriver /home/appuser/venv/bin/geckodriver')
-
-_ = installff()
-
 
 def scrape(category, city, state, pages):
     st.text('Loading and downloading the driver')
