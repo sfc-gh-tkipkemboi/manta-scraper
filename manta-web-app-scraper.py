@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 from bs4 import BeautifulSoup
 import os, sys
+from time import sleep
 
 from helium import *
 import undetected_chromedriver as uc
@@ -36,6 +37,7 @@ def scrape(category, city, state, pages):
     for x in range(1, int(pages)): # you can change the number of pages
         driver.get(f'https://www.manta.com/search?search_source=nav&search={category}&city={city}&state={state}&device=desktop&screenResolution=2400x1300&pg={x}')
         st.text(f'Page {x}')
+        sleep(5)
         #WebDriverWait(driver, 60).until(EC.presence_of_element_located((By.XPATH, '//*[@id="mapid"]')))
         soup = BeautifulSoup(driver.page_source, 'lxml')
         cards = soup.select('.md\:mt-4')
