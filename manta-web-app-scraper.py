@@ -77,6 +77,15 @@ def scrape(category, city, state, pages):
     st.dataframe(df)
     driver.quit()
 
+    csv = df.to_csv(index=False).encode('utf-8')
+    st.download_button(
+        "Press to Download",
+        csv,
+        f"{category}-data.csv",
+        "text/csv",
+        key='download-csv'
+    )
+
 st.title('Manta.com Buisness Directory Scraper')
 with st.form('Scraper'):
     st.text('If you get any error make sure you choose a valid category, state, city and number of page as well.')
@@ -87,6 +96,7 @@ with st.form('Scraper'):
     state = st.text_input('State EX: Florida')
     pages = st.number_input(f'Number of pages to scrape? NB: Each page has 35 listings')
     button = st.form_submit_button('scrape')
-    if button:
-        scrape(category, city, state, pages)
+
+if button:
+    scrape(category, city, state, pages)
 
