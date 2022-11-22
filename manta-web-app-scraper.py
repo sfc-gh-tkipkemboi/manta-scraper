@@ -83,20 +83,21 @@ def scrape(category, city, state, pages):
         key='download-csv'
     )
 
-st.balloons()
-st.title('🔨 Manta.com Scraper')
-with st.form('Scraper'):
-    st.text('If you get any error make sure you choose a valid category, state, city and number of page as well.')
-    st.text('So before you click on the scrape button, I will advice you go to the site (https://www.manta.com/business-directory) to test the parameters before inputing them here')
-    st.text('Check the page limit as well. Because the site is very sensitive to this parameters.')
-    category = st.text_input('Category EX: Restuarants')
-    city = st.text_input('City EX: Miami')
-    state = st.text_input('State EX: Florida')
-    pages = st.number_input(f'Number of pages to scrape? NB: Each page has 35 listings')
-    button = st.form_submit_button('scrape')
+if __name__ == "__main__":
+    st.balloons()
+    st.title('🔨 Manta.com Scraper')
+    with st.form('Scraper'):
+        st.text('If you get any error make sure you choose a valid category, state, city and number of page as well.')
+        st.text('So before you click on the scrape button, I will advice you go to the site (https://www.manta.com/business-directory) to test the parameters before inputing them here')
+        st.text('Check the page limit as well. Because the site is very sensitive to this parameters.')
+        category = st.text_input('Category EX: Restuarants')
+        city = st.text_input('City EX: Miami')
+        state = st.text_input('State EX: Florida')
+        pages = st.number_input(f'Number of pages to scrape? NB: Each page has 35 listings')
+        button = st.form_submit_button('scrape')
 
-if button:
-    st.info('Selenium is running, please wait...')
-    scrape(category, city, state, pages)
-    st.text('Successful finished.')
+    if button:
+        st.info('Selenium is running, please wait...')
+        scrape(category, city, state, pages)
+        st.text('Successful finished.')
 
